@@ -1,0 +1,111 @@
+message_id,action,message_type,reason,confidence,evidence_message_ids
+msg_023,notify,transactional_alert,Transaction alert detected.,0.95,message_0243
+msg_091,digest,personal_chat,No high-priority indicators found.,0.7,message_0238
+msg_090,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_048,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_040,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_075,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_005,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_104,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_069,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_107,notify,transactional_alert,OTP detected.,0.98,none
+msg_070,notify,transactional_alert,OTP detected.,0.98,message_0369
+msg_003,digest,personal_chat,No high-priority indicators found.,0.7,message_0400|message_0031
+msg_099,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_008,digest,personal_chat,No high-priority indicators found.,0.7,message_0296
+msg_092,notify,transactional_alert,Transaction alert detected.,0.95,none
+msg_060,mute,marketing_promo,Promotional content detected.,0.9,message_0284|message_0176
+msg_004,digest,personal_chat,No high-priority indicators found.,0.7,message_0246|message_0245|message_0005
+msg_030,digest,personal_chat,No high-priority indicators found.,0.7,message_0115
+msg_045,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_052,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_009,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_071,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_016,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_065,mute,marketing_promo,Promotional content detected.,0.9,message_0260|message_0261
+msg_038,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_086,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_014,digest,personal_chat,No high-priority indicators found.,0.7,message_0258|message_0018|message_0017|message_0083|message_0084
+msg_094,mute,marketing_promo,Promotional content detected.,0.9,none
+msg_029,digest,personal_chat,No high-priority indicators found.,0.7,message_0095|message_0113
+msg_105,digest,personal_chat,No high-priority indicators found.,0.7,message_0373|message_0233
+msg_002,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_010,digest,personal_chat,No high-priority indicators found.,0.7,message_0011|message_0242|message_0075
+msg_078,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_013,mute,marketing_promo,Promotional content detected.,0.9,none
+msg_018,digest,personal_chat,No high-priority indicators found.,0.7,message_0026
+msg_044,notify,transactional_alert,OTP detected.,0.98,none
+msg_032,digest,personal_chat,No high-priority indicators found.,0.7,message_0119
+msg_106,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_006,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_109,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_108,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_019,digest,personal_chat,No high-priority indicators found.,0.7,message_0277
+msg_088,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_056,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_027,digest,personal_chat,No high-priority indicators found.,0.7,message_0272|message_0033|message_0007
+msg_050,digest,personal_chat,No high-priority indicators found.,0.7,message_0279|message_0278
+msg_083,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_063,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_033,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_061,digest,personal_chat,No high-priority indicators found.,0.7,message_0080
+msg_020,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_017,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_058,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_026,digest,personal_chat,No high-priority indicators found.,0.7,message_0032
+msg_047,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_046,notify,transactional_alert,OTP detected.,0.98,none
+msg_042,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_079,notify,transactional_alert,OTP detected.,0.98,none
+msg_098,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_037,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_007,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_085,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_001,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_021,notify,transactional_alert,Transaction alert detected.,0.95,none
+msg_028,mute,marketing_promo,Promotional content detected.,0.9,message_0034
+msg_012,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_064,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_103,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_031,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_057,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_087,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_067,notify,transactional_alert,Transaction alert detected.,0.95,none
+msg_039,notify,transactional_alert,Transaction alert detected.,0.95,message_0364
+msg_082,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_066,mute,marketing_promo,Promotional content detected.,0.9,message_0257|message_0402
+msg_049,digest,personal_chat,No high-priority indicators found.,0.7,message_0154|message_0291
+msg_015,notify,transactional_alert,OTP detected.,0.98,none
+msg_051,mute,marketing_promo,Promotional content detected.,0.9,message_0257|message_0402
+msg_097,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_089,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_053,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_059,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_024,mute,marketing_promo,Promotional content detected.,0.9,message_0257|message_0402
+msg_072,notify,transactional_alert,OTP detected.,0.98,none
+msg_036,digest,personal_chat,No high-priority indicators found.,0.7,message_0283
+msg_076,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_055,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_102,digest,personal_chat,No high-priority indicators found.,0.7,message_0371|message_0230
+msg_080,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_093,notify,transactional_alert,OTP detected.,0.98,none
+msg_034,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_035,digest,personal_chat,No high-priority indicators found.,0.7,message_0281
+msg_101,digest,personal_chat,No high-priority indicators found.,0.7,message_0370|message_0229|message_0268
+msg_041,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_011,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_110,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_095,notify,transactional_alert,Transaction alert detected.,0.95,none
+msg_074,notify,transactional_alert,Transaction alert detected.,0.95,none
+msg_073,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_054,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_068,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_100,notify,transactional_alert,Transaction alert detected.,0.95,message_0362|message_0228
+msg_062,digest,personal_chat,No high-priority indicators found.,0.7,message_0043
+msg_096,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_043,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_077,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_081,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_025,digest,personal_chat,No high-priority indicators found.,0.7,message_0239|message_0004
+msg_084,digest,personal_chat,No high-priority indicators found.,0.7,none
+msg_022,notify,transactional_alert,Transaction alert detected.,0.95,none
