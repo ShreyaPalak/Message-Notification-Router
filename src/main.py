@@ -1,9 +1,11 @@
 import pandas as pd
 
+from src.context.group_context import GroupContext
 
 from src.config import (
     BUSINESS_ACCOUNTS_FILE,
     MESSAGES_FILE,
+    GROUPS_FILE,
     MESSAGE_HISTORY_FILE,
     OUTPUT_FILE,
     USER_BUSINESS_HISTORY_FILE,
@@ -53,6 +55,10 @@ def main():
     reputation_engine = ReputationEngine(
         BUSINESS_ACCOUNTS_FILE,
         USER_BUSINESS_HISTORY_FILE,
+    )
+
+    group_context = GroupContext(
+        GROUPS_FILE
     )
 
     rules = RuleEngine()
@@ -114,12 +120,26 @@ def main():
         score = reputation_engine.sender_score(
             sender_id
         )
+        
+        group_id = row.get("group_id")
+
+        if group_context.is_muted(group_id):
+
+            result = {
+                "action": "mute",
+                "message_type": "group_chat",
+                "reason": (
+                "Message originated from a muted group."
+            ),
+                "confidence": 1.0,
+                "evidence_message_ids": "none",
+            }
 
         # -------------------------------------------------
         # Hard rules
         # -------------------------------------------------
 
-        if score < 0.20:
+        elif score < 0.20:
 
             result = {
                 "action": "mute",
