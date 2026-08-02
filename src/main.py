@@ -1,15 +1,19 @@
 import pandas as pd
 
+
 from src.config import (
+    BUSINESS_ACCOUNTS_FILE,
     MESSAGES_FILE,
-    USERS_FILE,
     MESSAGE_HISTORY_FILE,
     OUTPUT_FILE,
+    USER_BUSINESS_HISTORY_FILE,
+    USERS_FILE,
 )
 
 from src.context.normalizer import normalize
 from src.context.feature_builder import FeatureBuilder
 from src.context.evidence_retriever import EvidenceRetriever
+from src.context.reputation import ReputationEngine
 
 from src.engine.rules import RuleEngine
 from src.engine.keyword_classifier import KeywordClassifier
@@ -23,6 +27,8 @@ from src.logger import log
 
 
 def load_data():
+    """Load all required datasets."""
+
     messages = pd.read_csv(MESSAGES_FILE)
     users = pd.read_csv(USERS_FILE)
     history = pd.read_csv(MESSAGE_HISTORY_FILE)
@@ -44,6 +50,11 @@ def main():
         history=history
     )
 
+    reputation_engine = ReputationEngine(
+        BUSINESS_ACCOUNTS_FILE,
+        USER_BUSINESS_HISTORY_FILE,
+    )
+
     rules = RuleEngine()
 
     classifier = KeywordClassifier()
@@ -63,6 +74,10 @@ def main():
 
     for _, row in messages.iterrows():
 
+        # -------------------------------------------------
+        # Locate the user
+        # -------------------------------------------------
+
         user_rows = users[
             users["user_id"] == row["user_id"]
         ]
@@ -72,25 +87,81 @@ def main():
         else:
             user_row = {}
 
+        # -------------------------------------------------
+        # Extract text
+        # -------------------------------------------------
+
         text = str(row.get("text", ""))
 
         if text.lower() == "nan":
             text = ""
+
+        # -------------------------------------------------
+        # Build features
+        # -------------------------------------------------
 
         features = feature_builder.build(
             row,
             user_row,
         )
 
-        result = orchestrator.predict(
-            row=row,
-            text=text,
-            features=features,
+        # -------------------------------------------------
+        # Reputation scoring
+        # -------------------------------------------------
+
+        sender_id = row.get("business_id")
+
+        score = reputation_engine.sender_score(
+            sender_id
         )
+
+        # -------------------------------------------------
+        # Hard rules
+        # -------------------------------------------------
+
+        if score < 0.20:
+
+            result = {
+                "action": "mute",
+                "message_type": "scam_spam",
+                "reason": (
+                    "Sender has a low reputation score."
+                ),
+                "confidence": 0.90,
+                "evidence_message_ids": "none",
+            }
+
+        elif score > 0.80:
+
+            result = {
+                "action": "notify",
+                "message_type": "transactional_alert",
+                "reason": (
+                    "Sender has a high reputation score."
+                ),
+                "confidence": 0.85,
+                "evidence_message_ids": "none",
+            }
+
+        else:
+
+            result = orchestrator.predict(
+                row=row,
+                text=text,
+                features=features,
+            )
+
+        # -------------------------------------------------
+        # Store results
+        # -------------------------------------------------
 
         result["message_id"] = row["message_id"]
 
         rows.append(result)
+
+    # -----------------------------------------------------
+    # Write output
+    # -----------------------------------------------------
 
     write_output(rows, OUTPUT_FILE)
 
