@@ -110,6 +110,10 @@ def main():
             row,
             user_row,
         )
+        evidence = evidence_retriever.retrieve(
+            text=text,
+            top_k=5,
+            )
 
         # -------------------------------------------------
         # Reputation scoring
@@ -121,9 +125,30 @@ def main():
             sender_id
         )
         
-        group_id = row.get("group_id")
+        forwarded_count = row.get(
+            "forwarded_count",
+            0,)
 
-        if group_context.is_muted(group_id):
+        if pd.isna(forwarded_count):
+            forwarded_count = 0
+
+        if not pd.isna(forwarded_count):
+            forwarded_count = int(forwarded_count)
+
+        group_id = row.get("group_id")
+        
+        if forwarded_count >= 10:
+            result = {
+                "action": "mute",
+                "message_type": "scam_spam",
+                "reason": (
+                    "Message has been heavily forwarded."
+                ),
+                "confidence": 0.95,
+                "evidence_message_ids": "none",
+                }
+
+        elif group_context.is_muted(group_id):
 
             result = {
                 "action": "mute",
@@ -169,6 +194,7 @@ def main():
                 row=row,
                 text=text,
                 features=features,
+                evidence=evidence,
             )
 
         # -------------------------------------------------
@@ -177,6 +203,14 @@ def main():
 
         result["message_id"] = row["message_id"]
 
+        
+        if evidence:
+            result["evidence_message_ids"] = "|".join(
+        map(str, evidence)
+    )
+        else:
+            result["evidence_message_ids"] = "none"
+            
         rows.append(result)
 
     # -----------------------------------------------------

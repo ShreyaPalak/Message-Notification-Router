@@ -1,5 +1,6 @@
 from src.guardrails.fallback import FALLBACK
 
+
 class Orchestrator:
 
     def __init__(
@@ -15,22 +16,22 @@ class Orchestrator:
         self.retriever = retriever
 
     def predict(
-        self,
-        row,
-        text,
-        features,
-    ):
+    self,
+    row,
+    text,
+    features,
+    evidence=None,
+):
 
         try:
 
-            evidence = self.retriever.retrieve(
-                row["user_id"],
-                text,
+            if evidence is None:
+                evidence = self.retriever.retrieve(
+                    text=text,
+                top_k=5,
             )
 
-            result = self.rules.predict(
-                text,
-            )
+            result = self.rules.predict(text)
 
             if result is None:
 
@@ -44,7 +45,7 @@ class Orchestrator:
             )
 
             result["evidence_message_ids"] = (
-                "|".join(evidence)
+                "|".join(map(str, evidence))
                 if evidence
                 else "none"
             )

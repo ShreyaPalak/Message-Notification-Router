@@ -3,60 +3,53 @@ from difflib import SequenceMatcher
 
 class EvidenceRetriever:
 
-    def __init__(
-        self,
-        history,
-        threshold=0.55,
-        top_k=5,
-    ):
+    def __init__(self, history):
         self.history = history
-        self.threshold = threshold
-        self.top_k = top_k
 
-    def similarity(
-        self,
-        first,
-        second,
-    ):
+    def similarity(self, text1, text2):
+
+        if not text1 or not text2:
+            return 0.0
+
         return SequenceMatcher(
             None,
-            str(first).lower(),
-            str(second).lower(),
+            str(text1).lower(),
+            str(text2).lower(),
         ).ratio()
 
-    def retrieve(
-        self,
-        user_id,
-        text,
-    ):
+    def retrieve(self, text, top_k=5):
 
-        history = self.history[
-            self.history["user_id"] == user_id
-        ]
+        if self.history.empty:
+            return []
 
-        candidates = []
+        matches = []
 
-        for _, row in history.iterrows():
+        for _, row in self.history.iterrows():
+
+            candidate = str(
+                row.get("message_text", "")
+            )
 
             score = self.similarity(
                 text,
-                row["message_text"],
+                candidate,
             )
 
-            candidates.append(
-                (
-                    row["message_id"],
-                    score,
+            if score > 0.50:
+
+                matches.append(
+                    (
+                        score,
+                        row.get("message_id"),
+                    )
                 )
-            )
 
-        candidates.sort(
-            key=lambda x: x[1],
+        matches.sort(
+            key=lambda x: x[0],
             reverse=True,
         )
 
         return [
             message_id
-            for message_id, score in candidates
-            if score > self.threshold
-        ][: self.top_k]
+            for _, message_id in matches[:top_k]
+        ]
