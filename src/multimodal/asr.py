@@ -28,10 +28,7 @@ class WhisperTranscriber:
         try:
             result = self.model.transcribe(str(path))
             
-            print(result)
-
             return result["text"].strip()
 
         except Exception as e:
-            print("ERROR:", e)
             return ""
