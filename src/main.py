@@ -1,6 +1,7 @@
 import pandas as pd
 
 from src.context.group_context import GroupContext
+from src.engine.scam_detector import ScamDetector
 
 from src.config import (
     BUSINESS_ACCOUNTS_FILE,
@@ -67,11 +68,14 @@ def main():
 
     validator = Validator()
 
+    scam_detector=ScamDetector()
+    
     orchestrator = Orchestrator(
         rules=rules,
         classifier=classifier,
         validator=validator,
         retriever=evidence_retriever,
+        
     )
 
     rows = []
@@ -147,7 +151,9 @@ def main():
                 "confidence": 0.95,
                 "evidence_message_ids": "none",
                 }
-
+        elif scam_detector.predict(text) is not None:
+            result = scam_detector.predict(text)
+        
         elif group_context.is_muted(group_id):
 
             result = {
@@ -200,6 +206,7 @@ def main():
         # -------------------------------------------------
         # Store results
         # -------------------------------------------------
+        
 
         result["message_id"] = row["message_id"]
 
